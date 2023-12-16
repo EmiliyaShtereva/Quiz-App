@@ -32,7 +32,7 @@ const questions = [
 
 const questionElement = document.getElementById('question');
 const explanationElement = document.getElementById('explanation');
-const answerButton = document.getElementById('answer-buttons');
+const answerButtons = document.getElementById('answer-buttons');
 const nextButton = document.getElementById('next-btn');
 
 let shuffledQestions;
@@ -40,8 +40,6 @@ let currentQuestionIndex = 0;
 let score = 0;
 
 function startQuiz () {
-    nextButton.classList.add('hide');
-    explanationElement.classList.add('hide');
     shuffledQestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     score = 0;
@@ -50,6 +48,7 @@ function startQuiz () {
 }
 
 function showQuestion() {
+    resetState();
     let currentQuestion = shuffledQestions[currentQuestionIndex];
     questionElement.textContent = currentQuestion.question;
 
@@ -57,8 +56,16 @@ function showQuestion() {
         const button = document.createElement('button');
         button.textContent = answer.text;
         button.classList.add('btn');
-        answerButton.appendChild(button);
+        answerButtons.appendChild(button);
     });
+}
+
+function resetState() {
+    nextButton.classList.add('hide');
+    explanationElement.classList.add('hide');
+    while(answerButtons.firstChild) {
+        answerButtons.removeChild(answerButtons.firstChild);
+    }
 }
 
 startQuiz();
