@@ -28,4 +28,22 @@ const questions = [
         ],
         explanation: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae consequatur adipisci illum reprehenderit quod impedit harum, accusamus at quis ad minima asperiores optio consequuntur libero voluptate ipsa neque dolorem itaque?'
     }
-]
+];
+
+const questionElement = document.getElementById('question');
+const explanationElement = document.getElementById('explanation');
+const answerButton = document.getElementById('answer-buttons');
+const nextButton = document.getElementById('next-btn');
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+function startQuiz () {
+    currentQuestionIndex = 0;
+    score = 0;
+    nextButton.innerText = 'Next';
+    nextButton.classList.add('hide');
+    explanationElement.classList.add('hide');
+}
+
+startQuiz();
