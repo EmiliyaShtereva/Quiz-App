@@ -60,7 +60,6 @@ p {
     margin-top: 10px;
     text-align: left;
     cursor: pointer;
-    transition: all 0.4s;
 }
 
 .btn {
@@ -78,9 +77,13 @@ p {
     transition: all 0.4s;
 }
 
-.btn:hover {
+.btn:hover:not([disabled]) {
     background: #0c1925;
     color: #b49e8f;
+}
+
+.btn:disabled {
+    cursor: no-drop;
 }
 
 #next-btn {
