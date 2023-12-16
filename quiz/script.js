@@ -22,7 +22,7 @@ const questions = [
         question: 'Which is the smallest countryl in the world?',
         answers: [
             {text: 'Vatican City', correct: true},
-            {text: 'Bhutan', correct: true},
+            {text: 'Bhutan', correct: false},
             {text: 'Nepal', correct: false},
             {text: 'Shri Lanka', correct: false},
         ],
@@ -80,6 +80,14 @@ function selectAnswer(e) {
     } else {
         selectBtn.classList.add('incorrect')
     }
+    Array.from(answerButtons.children).forEach(button => {
+        if (button.dataset.correct === 'true') {
+            button.classList.add('correct');
+        }
+        button.disabled = true;
+    });
+    nextButton.classList.remove('hide');
+    explanationElement.classList.remove('hide');
 }
 
 startQuiz();
