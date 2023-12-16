@@ -57,6 +57,10 @@ function showQuestion() {
         button.textContent = answer.text;
         button.classList.add('btn');
         answerButtons.appendChild(button);
+        if (answer.correct) {
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener('click', selectAnswer);
     });
 }
 
@@ -65,6 +69,16 @@ function resetState() {
     explanationElement.classList.add('hide');
     while(answerButtons.firstChild) {
         answerButtons.removeChild(answerButtons.firstChild);
+    }
+}
+
+function selectAnswer(e) {
+    const selectBtn = e.target;
+    const isCorrect = selectBtn.dataset.correct === 'true';
+    if(isCorrect) {
+        selectBtn.classList.add('correct');
+    } else {
+        selectBtn.classList.add('incorrect')
     }
 }
 
