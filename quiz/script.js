@@ -31,7 +31,7 @@ const questions = [
 ];
 
 const questionElement = document.getElementById('question');
-const explanationElement = document.getElementById('explanation');
+const explanationElement = document.getElementById('explanation-contaner');
 const answerButtons = document.getElementById('answer-buttons');
 const nextButton = document.getElementById('next-btn');
 
