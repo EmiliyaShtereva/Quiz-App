@@ -35,15 +35,17 @@ const explanationElement = document.getElementById('explanation');
 const answerButton = document.getElementById('answer-buttons');
 const nextButton = document.getElementById('next-btn');
 
-let currentQuestionIndex = 0;
+let shuffledQestions, currentQuestionIndex;
 let score = 0;
 
 function startQuiz () {
+    nextButton.classList.add('hide');
+    explanationElement.classList.add('hide');
+    shuffledQestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerText = 'Next';
-    nextButton.classList.add('hide');
-    explanationElement.classList.add('hide');
+    showQuestion();
 }
 
 startQuiz();
