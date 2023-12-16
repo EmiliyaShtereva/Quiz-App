@@ -1,7 +1,7 @@
 const questions = [
     {
         question: 'Which is the largest animal in the world?',
-        answer: [
+        answers: [
             {text: 'Shark', correct: false},
             {text: 'Blue whale', correct: true},
             {text: 'Elephant', correct: false},
@@ -11,7 +11,7 @@ const questions = [
     }, 
     {
         question: 'Which is the smallest continent in the world?',
-        answer: [
+        answers: [
             {text: 'Asia', correct: false},
             {text: 'Australia', correct: true},
             {text: 'Arctic', correct: false},
@@ -20,7 +20,7 @@ const questions = [
         explanation: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae consequatur adipisci illum reprehenderit quod impedit harum, accusamus at quis ad minima asperiores optio consequuntur libero voluptate ipsa neque dolorem itaque?'
     }, {
         question: 'Which is the smallest countryl in the world?',
-        answer: [
+        answers: [
             {text: 'Vatican City', correct: true},
             {text: 'Bhutan', correct: true},
             {text: 'Nepal', correct: false},
@@ -35,7 +35,8 @@ const explanationElement = document.getElementById('explanation');
 const answerButton = document.getElementById('answer-buttons');
 const nextButton = document.getElementById('next-btn');
 
-let shuffledQestions, currentQuestionIndex;
+let shuffledQestions;
+let currentQuestionIndex = 0;
 let score = 0;
 
 function startQuiz () {
@@ -44,8 +45,20 @@ function startQuiz () {
     shuffledQestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     score = 0;
-    nextButton.innerText = 'Next';
+    nextButton.textContent = 'Next';
     showQuestion();
+}
+
+function showQuestion() {
+    let currentQuestion = shuffledQestions[currentQuestionIndex];
+    questionElement.textContent = currentQuestion.question;
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.textContent = answer.text;
+        button.classList.add('btn');
+        answerButton.appendChild(button);
+    });
 }
 
 startQuiz();
